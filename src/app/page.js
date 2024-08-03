@@ -1,10 +1,12 @@
 "use client"
 import Image from "next/image";
+import { motion } from "framer-motion"
 import 'remixicon/fonts/remixicon.css';
 import wind from './Assets/wind.png';
 import { useEffect,useState,useRef } from "react";
-export default function Home() {
+export default function Home({Reference}) {
     const inputRef =useRef()
+    const drag =useRef()
     const [api ,setApi] = useState("6fe2462540a54a97960ccea5fc9b6d73");
     const [weatherData ,setWeatherData] = useState({});
     const search = async (city)=> {
@@ -31,10 +33,10 @@ try {
     },[])
   return (
    <>
-   <div class="container w-[100vw] h-[100vh] overflow-hidden flex justify-center items-center ">
-    <div class="weather w-80 h-96  rounded-2xl overflow-hidden flex flex-col justify-between text-[#201f1f] z-10">
+   <div class="container w-[100vw] h-[100vh] overflow-hidden flex justify-center items-center " ref={drag}>
+    <motion.div class="weather w-80 h-96  rounded-2xl overflow-hidden flex flex-col justify-between text-[#201f1f] z-10" drag dragConstraints={drag}>
         <div className="flex justify-center px-4 py-3 gap-3  input"><input type="text" className="text-[18px] px-2 outline-none bg-transparent text-white" ref={inputRef} placeholder="Enter City Name" autoFocus/> <i class="ri-search-line text-[20px] cursor-pointer text-zinc-50" onClick={()=> search (inputRef.current.value)}></i></div>
-        <div className="flex  flex-col items-center">
+        <div className="flex  flex-col items-center c">
         <h1 className=" text-[50px] font-bold">{weatherData.temperature}°C</h1>
         <h2 className=" text-[30px] font-semibold" >{weatherData.location}</h2>
         </div>
@@ -51,7 +53,7 @@ try {
             </div>
         </div>
 
-    </div>
+    </motion.div>
 
     <h1 className="text-[20vw] rounded-full absolute top-[70%] left-[50%] translate-x-[-50%]
   translate-y-[-50%] z-[1] opacity-40 text">Rupesh.</h1>
