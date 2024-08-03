@@ -36,14 +36,3 @@ backdrop-filter: blur(14.7px);
 .c{
     position: relative;
 }
-.c::after{
-    content: "";
-    width: 150px;
-    height: 25px;
-    position: absolute;
-    top: 95%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background: rgba(255, 255, 255, 1);
-    filter: blur(5px);
-}
