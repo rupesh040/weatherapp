@@ -34,7 +34,13 @@ try {
   return (
    <>
    <div class="container w-[100vw] h-[100vh] overflow-hidden flex justify-center items-center " ref={drag}>
-    <motion.div class="weather w-80 h-96  rounded-2xl overflow-hidden flex flex-col justify-between text-[#201f1f] z-10" drag dragConstraints={drag}>
+    <motion.div class="weather w-80 h-96  rounded-2xl overflow-hidden flex flex-col justify-between text-[#201f1f] z-10" drag dragConstraints={drag} initial={{ scale: 0 }}
+  animate={{ rotate: 360, scale: 1 }}
+  transition={{
+    type: "spring",
+    stiffness: 150,
+    damping: 30
+  }} >
         <div className="flex justify-center px-4 py-3 gap-3  input"><input type="text" className="text-[18px] px-2 outline-none bg-transparent text-white" ref={inputRef} placeholder="Enter City Name" autoFocus/> <i class="ri-search-line text-[20px] cursor-pointer text-zinc-50" onClick={()=> search (inputRef.current.value)}></i></div>
         <div className="flex  flex-col items-center c">
         <h1 className=" text-[50px] font-bold">{weatherData.temperature}°C</h1>
